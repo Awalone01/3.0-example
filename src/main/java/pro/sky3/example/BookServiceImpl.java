@@ -13,7 +13,6 @@ public class BookServiceImpl {
         this.booksRepository = booksRepository;
     }
 
-
     public Book createBook(Book book) {
         return booksRepository.save(book);
     }

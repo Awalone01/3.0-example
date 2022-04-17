@@ -12,9 +12,13 @@ public class BooksController {
 
     private final BookServiceImpl bookService;
 
-
     public BooksController(BookServiceImpl bookService) {
         this.bookService = bookService;
+    }
+
+    @PostMapping
+    public Book createBook(@RequestBody Book book) {
+        return bookService.createBook(book);
     }
 
     @GetMapping("{id}")
@@ -27,9 +31,9 @@ public class BooksController {
     }
 
     @GetMapping
-    public ResponseEntity findBooks(@RequestParam String name,
-                                                      @RequestParam String author,
-                                                      @RequestParam String part) {
+    public ResponseEntity findBooks(@RequestParam(required = false) String name,
+                                    @RequestParam(required = false) String author,
+                                    @RequestParam(required = false) String part) {
         if (name != null && name.isBlank()) {
            return ResponseEntity.ok(bookService.findByName(name));
         }
@@ -40,17 +44,6 @@ public class BooksController {
             return ResponseEntity.ok(bookService.findByAPart(part));
         }
         return ResponseEntity.ok(bookService.getAllBooks());
-    }
-
-
-    @GetMapping("{id}")
-    public Book getBook(@PathVariable Long id) {
-        return bookService.findBook(id);
-    }
-
-    @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.createBook(book);
     }
 
     @PutMapping
