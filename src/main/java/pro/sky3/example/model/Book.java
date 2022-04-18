@@ -1,9 +1,7 @@
-package pro.sky3.example;
+package pro.sky3.example.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
 public class Book {
@@ -14,6 +12,10 @@ public class Book {
 
     private String name;
     private String author;
+
+    @ManyToOne
+    @JoinColumn(name = "reader_id")
+    private Reader reader;
 
     public Book(long id, String name, String author) {
         this.id = id;

@@ -1,6 +1,8 @@
-package pro.sky3.example;
+package pro.sky3.example.service;
 
 import org.springframework.stereotype.Service;
+import pro.sky3.example.repository.BooksRepository;
+import pro.sky3.example.model.Book;
 
 import java.util.Collection;
 
@@ -34,14 +36,14 @@ public class BookServiceImpl {
     }
 
     public Book findByName(String name) {
-        return booksRepository.findByName(name);
+        return booksRepository.findByNameIgnoreCase(name);
     }
 
     public Collection<Book> findByAuthor (String author){
-        return booksRepository.findBooksByAuthor(author);
+        return booksRepository.findBooksByAuthorContainsIgnoreCase(author);
     }
 
     public Collection<Book> findByAPart (String part){
-        return booksRepository.findAllByNameContains(part);
+        return booksRepository.findAllByNameContainsIgnoreCase(part);
     }
 }

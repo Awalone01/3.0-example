@@ -1,10 +1,10 @@
-package pro.sky3.example;
+package pro.sky3.example.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
+import pro.sky3.example.service.BookServiceImpl;
+import pro.sky3.example.model.Book;
 
 @RestController
 @RequestMapping("books")
@@ -34,13 +34,13 @@ public class BooksController {
     public ResponseEntity findBooks(@RequestParam(required = false) String name,
                                     @RequestParam(required = false) String author,
                                     @RequestParam(required = false) String part) {
-        if (name != null && name.isBlank()) {
+        if (name != null && !name.isBlank()) {
            return ResponseEntity.ok(bookService.findByName(name));
         }
-        if (author != null && author.isBlank()) {
+        if (author != null && !author.isBlank()) {
             return ResponseEntity.ok(bookService.findByAuthor(author));
         }
-        if (part != null && part.isBlank()) {
+        if (part != null && !part.isBlank()) {
             return ResponseEntity.ok(bookService.findByAPart(part));
         }
         return ResponseEntity.ok(bookService.getAllBooks());
