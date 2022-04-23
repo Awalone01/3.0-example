@@ -4,5 +4,10 @@
       "name": "spring.jpa.hibernate.ddl",
       "type": "java.lang.String",
       "description": "Description for spring.jpa.hibernate.ddl."
-  }
-] }
+    },
+    {
+      "name": "books.cover.dir.path",
+      "type": "java.lang.String",
+      "description": "Description for books.cover.dir.path."
+    }
+  ] }

@@ -1,10 +1,13 @@
 package pro.sky3.example.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pro.sky3.example.repository.BooksRepository;
 import pro.sky3.example.model.Book;
 
+import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class BookServiceImpl {
@@ -31,7 +34,7 @@ public class BookServiceImpl {
         booksRepository.deleteById(id);
     }
 
-    public Collection<Book> getAllBooks() {
+    public List<Book> getAllBooks() {
         return booksRepository.findAll();
     }
 
@@ -39,11 +42,13 @@ public class BookServiceImpl {
         return booksRepository.findByNameIgnoreCase(name);
     }
 
-    public Collection<Book> findByAuthor (String author){
+    public List<Book> findByAuthor (String author){
         return booksRepository.findBooksByAuthorContainsIgnoreCase(author);
     }
 
-    public Collection<Book> findByAPart (String part){
+    public List<Book> findByAPart (String part){
         return booksRepository.findAllByNameContainsIgnoreCase(part);
     }
+
+
 }
