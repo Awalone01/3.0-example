@@ -39,7 +39,7 @@ public class BooksController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<List<Book>> getBookInfo(@PathVariable Long id) {
+    public ResponseEntity<Book> getBookInfo(@PathVariable Long id) {
         Book book = bookService.findBook(id);
         if (book == null) {
             return ResponseEntity.notFound().build();
@@ -48,7 +48,7 @@ public class BooksController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> findBooks(@RequestParam(required = false) String name, @RequestParam(required = false) String author, @RequestParam(required = false) String part) {
+    public ResponseEntity findBooks(@RequestParam(required = false) String name, @RequestParam(required = false) String author, @RequestParam(required = false) String part) {
         if (name != null && !name.isBlank()) {
            return ResponseEntity.ok(bookService.findByName(name));
         }

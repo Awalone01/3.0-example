@@ -22,7 +22,7 @@ public class BookServiceImpl {
         return booksRepository.save(book);
     }
 
-    public List<Book> findBook(long id) {
+    public Book findBook(long id) {
         return booksRepository.findById(id).get();
     }
 
