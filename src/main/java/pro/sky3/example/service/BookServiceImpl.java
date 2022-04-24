@@ -22,7 +22,7 @@ public class BookServiceImpl {
         return booksRepository.save(book);
     }
 
-    public Book findBook(long id) {
+    public List<Book> findBook(long id) {
         return booksRepository.findById(id).get();
     }
 
@@ -38,7 +38,7 @@ public class BookServiceImpl {
         return booksRepository.findAll();
     }
 
-    public Book findByName(String name) {
+    public List<Book> findByName(String name) {
         return booksRepository.findByNameIgnoreCase(name);
     }
 
