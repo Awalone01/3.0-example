@@ -77,7 +77,9 @@ public class BooksController {
     }
 
     @PostMapping(value = "/{id}/cover", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadCover (@PathVariable Long id, @RequestParam MultipartFile cover) throws IOException {
+    public ResponseEntity<String> uploadCover (
+            @PathVariable Long id,
+            @RequestParam MultipartFile cover) throws IOException {
         if (cover.getSize() >= 1024 * 300) {
             return ResponseEntity.badRequest().body(("File is too big"));
         }
@@ -85,17 +87,17 @@ public class BooksController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(value = "/{id}/cover/preview")
-    public ResponseEntity<byte[]> downloadCover(@PathVariable Long id) {
-        BookCover bookCover = bookCoverService.findBookCover(id);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(bookCover.getMediaType()));
-        headers.setContentLength(bookCover.getPreview().length);
-
-        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(bookCover.getPreview());
-
-    }
+//    @GetMapping(value = "/{id}/cover/preview")
+//    public ResponseEntity<byte[]> downloadCover(@PathVariable Long id) {
+//        BookCover bookCover = bookCoverService.findBookCover(id);
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(bookCover.getMediaType()));
+//        headers.setContentLength(bookCover.getPreview().length);
+//
+//        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(bookCover.getPreview());
+//
+//    }
 
     @GetMapping(value = "/{id}/cover")
     public void downloadCover(@PathVariable Long id, HttpServletResponse response) throws  IOException {
